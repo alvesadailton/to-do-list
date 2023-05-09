@@ -1,0 +1,360 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap");
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+.container .content {
+  background-color: #220a06;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border: 3px solid #5b5b5b;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 8px 8px 8px #000;
+}
+.container .content .header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.container .content .header .img-header {
+  width: 200px;
+  height: 150px;
+  animation: flutuando01 2s ease;
+  animation-iteration-count: infinite;
+}
+@keyframes flutuando01 {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.container .content .header h1 {
+  text-align: center;
+  font-size: 2em;
+  color: #fff;
+}
+.container .content .header h1 span {
+  font-size: 0.8em;
+}
+.container .content .field-input {
+  width: 100%;
+  margin-top: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.container .content .field-input .input-task {
+  height: 30px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 450px;
+  font-size: 1em;
+  color: #4e160c;
+  border: none;
+  box-shadow: 5px 5px 5px #000;
+  padding: 10px;
+}
+.container .content .field-input .input-task::-webkit-input-placeholder {
+  color: rgba(78, 22, 12, 0.7215686275);
+  font-weight: bold;
+}
+.container .content .field-input .input-task:focus {
+  background-color: #d1d1d1;
+  width: 82%;
+  max-width: 455px;
+  outline: 0;
+  transition: all 0.3s ease-in-out;
+}
+.container .content .field-input .add-button {
+  vertical-align: bottom;
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+  border: none;
+  background-color: #d14343;
+  cursor: pointer;
+}
+.container .content .warning {
+  text-align: center;
+  font-size: 0.7em;
+  margin-right: 40px;
+  margin-top: 5px;
+  color: #d14343;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .container .content {
+    width: 80%;
+    height: 90%;
+    border-radius: 6px;
+    border: 2px solid #5b5b5b;
+  }
+  .container .content .header .img-header {
+    width: 300px;
+    transition: all 2s ease;
+  }
+  .container .content .header h1 {
+    font-size: 2.5em;
+    cursor: default;
+  }
+  .container .content .header h1 span {
+    font-size: 1em;
+  }
+  .container .content .field-input .input-task {
+    height: 40px;
+    width: 400px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  .container .content .field-input .input-task:focus {
+    background-color: #d1d1d1;
+    width: 405px;
+    transition: all 0.3s ease-in-out;
+    outline: 0;
+  }
+  .container .content .field-input .add-button {
+    height: 40px;
+    width: 40px;
+  }
+  .container .content .field-input .add-button:hover {
+    background-color: #872626;
+    transition: all 0.3s ease-in-out;
+  }
+  .container .content .warning {
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container .content {
+    width: 60%;
+    height: 80%;
+    border-radius: 6px;
+    border: 2px solid #5b5b5b;
+  }
+  .container .content .header {
+    gap: 30px;
+  }
+  .container .content .header .img-header {
+    width: 330px;
+  }
+  .container .content .header h1 {
+    font-size: 3em;
+    cursor: default;
+  }
+  .container .content .header h1 span {
+    font-size: 1em;
+  }
+  .container .content .field-input {
+    gap: 20px;
+  }
+  .container .content .field-input .input-task {
+    height: 50px;
+    border-radius: 20px;
+    width: 80%;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  .container .content .field-input .input-task:focus {
+    background-color: #d1d1d1;
+    width: 505px;
+    transition: all 0.3s ease-in-out;
+    outline: 0;
+    cursor: text;
+  }
+  .container .content .field-input .add-button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+  }
+  .container .content .field-input .add-button:hover {
+    height: 52px;
+    width: 52px;
+    background-color: #872626;
+    transition: all 0.3s ease-in-out;
+  }
+  .container .content .warning {
+    font-size: 1em;
+    margin-top: 10px;
+  }
+}
+.list .task-text {
+  color: #fff;
+}
+
+.list2 .task-text {
+  color: rgba(174, 174, 174, 0.5529411765);
+  -webkit-text-decoration: 1px line-through #00ffff;
+          text-decoration: 1px line-through #00ffff;
+}
+
+.list,
+.list2 {
+  padding-top: 25px;
+}
+.list .task,
+.list2 .task {
+  display: flex;
+  gap: 10px;
+  color: #fff;
+}
+.list .task .task-text,
+.list2 .task .task-text {
+  font-size: 1.2em;
+}
+.list .task .task-text span,
+.list2 .task .task-text span {
+  font-size: 0.7em;
+  pointer-events: none;
+}
+.list .task .remove,
+.list .task .done,
+.list .task .re-add,
+.list2 .task .remove,
+.list2 .task .done,
+.list2 .task .re-add {
+  border-radius: 50px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+}
+.list .task .remove span,
+.list .task .done span,
+.list .task .re-add span,
+.list2 .task .remove span,
+.list2 .task .done span,
+.list2 .task .re-add span {
+  font-size: 1.2em;
+  pointer-events: none;
+}
+.list .task .done,
+.list2 .task .done {
+  color: #0f0;
+}
+.list .task .remove,
+.list2 .task .remove {
+  color: #f00;
+}
+.list .task .re-add,
+.list2 .task .re-add {
+  color: #00ffff;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .list .task,
+  .list2 .task {
+    gap: 15px;
+  }
+  .list .task .task-text,
+  .list2 .task .task-text {
+    font-size: 1.7em;
+  }
+  .list .task .task-text span,
+  .list2 .task .task-text span {
+    font-size: 0.7em;
+  }
+  .list .task .remove span,
+  .list .task .done span,
+  .list .task .re-add span,
+  .list2 .task .remove span,
+  .list2 .task .done span,
+  .list2 .task .re-add span {
+    font-size: 1.5em;
+  }
+  .list .task .done:hover,
+  .list2 .task .done:hover {
+    color: rgb(33, 132, 33);
+    transition: all 0.3s ease-in-out;
+  }
+  .list .task .remove:hover,
+  .list2 .task .remove:hover {
+    color: rgb(143, 25, 25);
+    transition: all 0.3s ease-in-out;
+  }
+  .list .task .re-add:hover,
+  .list2 .task .re-add:hover {
+    color: #1a8f8f;
+    transition: all 0.3s ease-in-out;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .list .task,
+  .list2 .task {
+    gap: 15px;
+  }
+  .list .task .task-text,
+  .list2 .task .task-text {
+    font-size: 2em;
+  }
+  .list .task .task-text span,
+  .list2 .task .task-text span {
+    font-size: 0.7em;
+  }
+  .list .task .remove span,
+  .list .task .done span,
+  .list .task .re-add span,
+  .list2 .task .remove span,
+  .list2 .task .done span,
+  .list2 .task .re-add span {
+    font-size: 2em;
+  }
+  .list .task .done:hover,
+  .list2 .task .done:hover {
+    color: rgb(33, 132, 33);
+    transition: all 0.3s ease-in-out;
+  }
+  .list .task .remove:hover,
+  .list2 .task .remove:hover {
+    color: rgb(143, 25, 25);
+    transition: all 0.3s ease-in-out;
+  }
+  .list .task .re-add:hover,
+  .list2 .task .re-add:hover {
+    color: #1a8f8f;
+    transition: all 0.3s ease-in-out;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Ubuntu", sans-serif;
+}
+
+body {
+  background-color: #3f0f07;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 50px;
+  background-color: #220a06;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 50px;
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: #fff;
+}/*# sourceMappingURL=style.css.map */
