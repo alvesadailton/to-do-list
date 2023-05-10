@@ -3,8 +3,8 @@
         constructor() {
             this.inputTask = document.querySelector('.input-task');
             this.btnAdd = document.querySelector('.add-button');
-            this.list = document.querySelector('.list');
-            this.list2 = document.querySelector('.list2');
+            this.tasks = document.querySelector('.list');
+            this.completedTasks = document.querySelector('.list2');
             this.img = document.querySelector('.img-header');
 
             this.main();
@@ -25,16 +25,12 @@
 
             document.addEventListener('click', this.callBackDone);
 
-            document.addEventListener('click', e => {
-                const el = e.target;
-                if (el === this.inputTask) {
-                    this.img.src = 'assets/img/typing.svg';
-                    this.removeError();
-                }
-                if (el.classList.contains('content') || el.classList.contains('container')) {
-                    this.img.src = 'assets/img/tasklist.svg';
-                    this.removeError();
-                }
+            this.inputTask.addEventListener('focusin', () => {
+                this.img.src = 'assets/img/typing.svg';
+                this.removeError();
+            });
+            this.inputTask.addEventListener('blur', () => {
+                this.img.src = 'assets/img/tasklist.svg';
             });
 
             document.addEventListener('click', e => {
@@ -108,7 +104,7 @@
             const li = this.createLi();
             const p = this.createP();
             li.setAttribute('class', 'task');
-            this.list.appendChild(li);
+            this.tasks.appendChild(li);
             p.setAttribute('class', 'task-text');
             li.appendChild(p);
             p.innerHTML = textInput.replace(/[\\|₢?/!,.;:\]}º^~`´{[_()@#$%¨&*¹²³£¢¬§'"<>]/g, '').trim();
@@ -129,20 +125,20 @@
             el.setAttribute('class', 're-add');
             el.setAttribute('title', 'Reative a Tarefa');
             el.innerHTML = '<span class="material-symbols-outlined">done_all</span>';
-            this.list2.appendChild(el.parentElement);
+            this.completedTasks.appendChild(el.parentElement);
         }
 
         reAddTask(el) {
             el.setAttribute('class', 'done');
             el.setAttribute('title', 'Finalize a Tarefa');
             el.innerHTML = '<span class="material-symbols-outlined">done</span>';
-            this.list.appendChild(el.parentElement);
+            this.tasks.appendChild(el.parentElement);
         }
         createTasksDone(textInput) {
             const li = this.createLi();
             const p = this.createP();
             li.setAttribute('class', 'task');
-            this.list2.appendChild(li);
+            this.completedTasks.appendChild(li);
             p.setAttribute('class', 'task-text');
             li.appendChild(p);
             p.innerHTML = textInput.replace(/[\\|₢?/!,.;:\]}º^~`´{[_()@#$%¨&*¹²³£¢¬§'"<>]/g, '').trim();
@@ -159,45 +155,50 @@
             li.appendChild(btnReAdd);
         }
 
+        saveToLocalStorage({ json, key }) {
+            localStorage.setItem(key, JSON.stringify(json));
+        }
+
+        getByLocalStorage({ key }) {
+            const json = localStorage.getItem(key);
+            return JSON.parse(json);
+        }
+
         saveTasks() {
             const taskList = [];
             const taskListDone = [];
 
             if (this.reAddTask) {
-                let liTasks = this.list.querySelectorAll('.done');
+                let liTasks = this.tasks.querySelectorAll('.done');
 
                 for (let task of liTasks) {
                     let textTask = task.previousElementSibling.innerText;
                     taskList.push(textTask);
                 }
-                const taskJSON = JSON.stringify(taskList);
-                localStorage.setItem('tasks', taskJSON);
+                this.saveToLocalStorage({ key: 'tasks', json: taskList });
             }
             if (this.doneTask) {
-                let liTasks2 = this.list2.querySelectorAll('.re-add');
+                let liTasks2 = this.completedTasks.querySelectorAll('.re-add');
 
                 for (let task of liTasks2) {
                     let textTask = task.previousElementSibling.innerText;
                     taskListDone.push(textTask);
                 }
-                const taskJSON2 = JSON.stringify(taskListDone);
-                localStorage.setItem('doneTasks', taskJSON2);
+                this.saveToLocalStorage({ key: 'completedTasks', json: taskListDone });
             }
         }
 
         addSaveTasks() {
-            const tasks = localStorage.getItem('tasks');
-            const doneTasks = localStorage.getItem('doneTasks');
-            const listTask = JSON.parse(tasks);
-            const listTaskD = JSON.parse(doneTasks);
+            const listTask = this.getByLocalStorage({ key: 'tasks' });
+            const listCompletedTask = this.getByLocalStorage({ key: 'completedTasks' });
 
-            if (tasks) {
+            if (listTask) {
                 for (let task of listTask) {
                     this.createTasks(task);
                 }
             }
-            if (doneTasks) {
-                for (let task of listTaskD) {
+            if (listCompletedTask) {
+                for (let task of listCompletedTask) {
                     this.createTasksDone(task);
                 }
             }
